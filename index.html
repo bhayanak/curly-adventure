@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#7ec8f2" />
+  <title>Curly Adventure</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-shell">
+    <canvas id="game" aria-label="Curly Adventure platformer"></canvas>
+
+    <!-- Top buttons -->
+    <button id="btn-pause" class="corner-btn" title="Pause (P)">⏸</button>
+    <button id="btn-mute" class="corner-btn corner-btn-2" title="Mute (M)">🔊</button>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div class="hud-row hud-top">
+        <span id="hud-level" class="hud-level"></span>
+        <span id="hud-objective" class="hud-obj"></span>
+      </div>
+      <div class="hud-row hud-stats">
+        <div class="hud-left">
+          <span id="hud-lives" class="pill">🐾 ×3</span>
+          <span id="hud-health" class="pill">❤️❤️❤️</span>
+        </div>
+        <div id="hud-word" class="hud-word"></div>
+        <div class="hud-right">
+          <span id="hud-coins" class="pill">🪙 0</span>
+          <span id="hud-gems" class="pill">💎 0</span>
+          <span id="hud-score" class="pill score">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Touch controls -->
+    <div id="touch" class="hidden-desktop">
+      <div class="pad pad-left">
+        <button class="tbtn" data-hold="left" aria-label="Left">◄</button>
+        <button class="tbtn" data-hold="right" aria-label="Right">►</button>
+      </div>
+      <div class="pad pad-right">
+        <button class="tbtn small" data-toggle="run" aria-label="Run">RUN</button>
+        <button class="tbtn" data-hold="down" aria-label="Crouch">▼</button>
+        <button class="tbtn" data-tap="punch" aria-label="Punch">👊</button>
+        <button class="tbtn" data-tap="dash" aria-label="Dash">⚡</button>
+        <button class="tbtn big" data-hold="jump" aria-label="Jump">⤒</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="overlay">
+      <div class="loader-dog">🐾</div>
+      <div class="loader-bar"><div id="loader-fill"></div></div>
+      <p class="loader-text">Fetching the pup…</p>
+    </div>
+
+    <!-- Menu -->
+    <div id="menu" class="overlay hidden">
+      <h1 class="title">Curly Adventure</h1>
+      <p class="subtitle">A platforming adventure 🐕</p>
+      <button id="btn-play" class="btn">▶ Play</button>
+      <p class="hint">
+        <span class="hint-desk">← → move &nbsp;·&nbsp; <b>Shift</b> = run (clears long pits) &nbsp;·&nbsp; <b>Space</b> = jump / double-jump &nbsp;·&nbsp; <b>X</b> = dash (⚡) &nbsp;·&nbsp; <b>F</b> = punch (👊) &nbsp;·&nbsp; <b>↓</b> = crouch</span>
+        <span class="hint-mob">Pad: move · RUN to sprint · 👊 punch · ⚡ dash · ↓ crouch · ⤢ jump (tap twice for double-jump)</span>
+      </p>
+      <p class="best">Best: <span id="menu-best">0</span></p>
+    </div>
+
+    <!-- Level intro -->
+    <div id="intro" class="overlay hidden">
+      <h2 id="intro-title" class="go-title">Level 1</h2>
+      <p id="intro-sub" class="subtitle"></p>
+      <button id="btn-go" class="btn">Go!</button>
+      <p class="hint">Hold <b>Shift</b> to run &amp; clear long jumps · stomp or dash (<b>X</b>) enemies &amp; crates · collect letters</p>
+    </div>
+
+    <!-- Pause -->
+    <div id="pause" class="overlay hidden">
+      <h2 class="go-title">Paused</h2>
+      <button id="btn-resume" class="btn">▶ Resume</button>
+      <button id="btn-quit" class="btn btn-ghost">Quit to Menu</button>
+    </div>
+
+    <!-- Level clear -->
+    <div id="levelclear" class="overlay hidden">
+      <h2 class="go-title">Level Clear! 🎉</h2>
+      <p id="clear-stats" class="subtitle"></p>
+      <button id="btn-next" class="btn">Next Level →</button>
+    </div>
+
+    <!-- Game over -->
+    <div id="gameover" class="overlay hidden">
+      <h2 class="go-title">Game Over</h2>
+      <p id="go-stats" class="subtitle"></p>
+      <button id="btn-retry" class="btn">↻ Try Again</button>
+    </div>
+
+    <!-- Win -->
+    <div id="win" class="overlay hidden">
+      <h2 class="go-title">You Win! 🏆</h2>
+      <p id="win-stats" class="subtitle"></p>
+      <button id="btn-again" class="btn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="js/sprites.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
